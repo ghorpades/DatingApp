@@ -21,6 +21,9 @@ import {TabsModule} from 'ngx-bootstrap/tabs';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberlistResolver } from './_resolvers/member-list.resolver';
 import { NgxGalleryModule } from 'ngx-gallery-9';
+import { MemberEditComponent } from './members/memberlist/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 
 
@@ -45,7 +48,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
       ListsComponent,
       MessagesComponent,
       MemberCardsComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
    imports: [
 	 BrowserModule,
@@ -68,8 +72,9 @@ export class CustomHammerConfig extends HammerGestureConfig {
       ErrorInterceptorProvider,
       MemberDetailResolver,
       MemberlistResolver,
-      {provide : HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig}
-   ],
+      MemberEditResolver,
+     PreventUnsavedChanges,
+     ],
    bootstrap: [
       AppComponent
    ]
